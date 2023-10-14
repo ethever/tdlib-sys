@@ -7,20 +7,15 @@ description = "Bindgen for Telegram's TDLib client library."
 edition = "2018"
 license = "ISC"
 readme = "README.md"
-build = "build.rs"
-include = [
-  "build.rs",
-  "Cargo.toml",
-  "COPYING",
-  "README.md",
-  "src/*"
-]
+# build = "build.rs"
+include = ["build.rs", "Cargo.toml", "COPYING", "README.md", "src/*"]
 
 [dependencies]
 tdlib-sys = "0.2.0"
 
 [build-dependencies]
-bindgen = "0.53.2"
+bindgen = "0.68.1"
 
 [features]
+default = ["bundled_deps"]
 bundled_deps = ["tdlib-sys/bundled_deps"]
