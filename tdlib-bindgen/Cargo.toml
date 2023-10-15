@@ -11,11 +11,11 @@ readme = "README.md"
 include = ["build.rs", "Cargo.toml", "COPYING", "README.md", "src/*"]
 
 [dependencies]
-tdlib-sys = "0.2.0"
+tdlib-sys = { path = "../" }
 
 [build-dependencies]
 bindgen = "0.68.1"
 
 [features]
-default = ["bundled_deps"]
+# default = ["bundled_deps"]
 bundled_deps = ["tdlib-sys/bundled_deps"]

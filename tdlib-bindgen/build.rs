@@ -7,8 +7,6 @@ fn main() {
         .expect("Can't access header from environment")
         .join("td_json_client.h");
 
-    println!("dhhhhh:{tdlib_header:?}");
-
     let bindings = bindgen::Builder::default()
         .header(tdlib_header.to_string_lossy())
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
@@ -17,7 +15,10 @@ fn main() {
 
     println!("bindings: {bindings:?}");
 
-    let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
+    let src_path = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
+    let out_path = src_path.join("src");
+
+    // let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     bindings
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
